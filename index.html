@@ -303,23 +303,30 @@
             document.body.removeChild(linkTemporario);
         }
 
-        // NOVO FLUXO COMBINADO DO WHATSAPP
-        btnWhatsappSeguro.addEventListener('click', function() {
-            // 1. Dispara o download em segundo plano imediatamente
-            dispararDownloadGarantido();
+        // NOVO FLUXO COMBINADO E CORRIGIDO DO WHATSAPP
+btnWhatsappSeguro.addEventListener('click', function() {
+    // 1. Dispara o download em segundo plano imediatamente
+    dispararDownloadGarantido();
 
-            // 2. Copia o texto para a área de transferência
-            navigator.clipboard.writeText(textoWhatsapp).then(() => {
-                // 3. Alerta o usuário explicando os próximos passos
-                alert("📥 O download do vídeo começou!\n\nO WhatsApp vai abrir em seguida. Escolha o contato, clique no ícone de anexo (clipe/câmera) para selecionar o vídeo baixado e cole a legenda emocionante que já copiamos para você!");
-                
-                // 4. Redireciona para o app do WhatsApp
-                window.open("https://api.whatsapp.com/send", "_blank");
-            }).catch(err => {
-                console.error("Erro ao copiar texto: ", err);
-                window.open("https://api.whatsapp.com/send", "_blank");
-            });
-        });
+    // 2. Copia o texto limpo para a área de transferência (para o caso de o usuário querer colar manualmente)
+    navigator.clipboard.writeText(textoWhatsapp).then(() => {
+        
+        // 3. Alerta o usuário explicando os próximos passos
+        alert("📥 O download do vídeo começou!\n\nO WhatsApp vai abrir em seguida com a mensagem pronta. Escolha o contato, envie a mensagem e depois anexe o vídeo baixado!");
+        
+        // 4. Cria a URL correta codificando o texto para não quebrar a API do WhatsApp
+        const textoCodificado = encodeURIComponent(textoWhatsapp);
+        const urlLinkWhatsapp = `https://api.whatsapp.com/send?text=${textoCodificado}`;
+        
+        // 5. Abre o WhatsApp com o texto já injetado nativamente
+        window.open(urlLinkWhatsapp, "_blank");
+    }).catch(err => {
+        console.error("Erro ao copiar texto: ", err);
+        // Fallback caso a cópia falhe, mas ainda usando a URL corrigida com texto
+        const textoCodificado = encodeURIComponent(textoWhatsapp);
+        window.open(`https://api.whatsapp.com/send?text=${textoCodificado}`, "_blank");
+    });
+});
 
         // Evento apenas para o botão de salvar direto (feedback visual opcional)
         btnBaixarDireto.addEventListener('click', function() {
