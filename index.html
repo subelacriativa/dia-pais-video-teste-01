@@ -276,6 +276,7 @@
             100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
         }
 
+        /* CONTAINER DO RODAPÉ */
         .rodape { 
             margin-top: 25px; 
             display: flex;
@@ -284,20 +285,31 @@
             width: 100%;
         }
         
-        .rodape a {
-            display: block;
+        .rodape-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
             transition: transform 0.2s ease;
         }
 
-        /* Efeito sutil para mostrar que a logo é clicável */
-        .rodape a:hover {
-            transform: scale(1.05);
+        .rodape-link:hover {
+            transform: scale(1.04);
         }
         
         .rodape img {
-            max-width: 120px;
+            max-width: 110px;
             height: auto;
             display: block;
+        }
+
+        /* TEXTO DO INSTAGRAM EMBAIXO DA LOGO */
+        .instagram-texto {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 500;
+            letter-spacing: 0.3px;
         }
     </style>
 </head>
@@ -313,9 +325,11 @@
         <button class="btn-principal" id="btn-ir-jogo">
             <span>🎮</span> CLIQUE AQUI
         </button>
+        
         <div class="rodape">
-            <a href="https://www.instagram.com/subelacriativa/" target="_blank">
+            <a href="https://www.instagram.com/subelacriativa/" target="_blank" class="rodape-link">
                 <img src="logo_sbc.png" alt="Su Bela Criativa">
+                <span class="instagram-texto">📸 Conheça a Su Bela Criativa no Instagram</span>
             </a>
         </div>
     </div>
@@ -332,8 +346,9 @@
         </div>
         
         <div class="rodape">
-            <a href="https://www.instagram.com/subelacriativa/" target="_blank">
+            <a href="https://www.instagram.com/subelacriativa/" target="_blank" class="rodape-link">
                 <img src="logo_sbc.png" alt="Su Bela Criativa">
+                <span class="instagram-texto">📸 Conheça a Su Bela Criativa no Instagram</span>
             </a>
         </div>
     </div>
@@ -373,9 +388,11 @@
                 ↩️ Voltar para a Mensagem Inicial
             </button>
         </div>
+        
         <div class="rodape">
-            <a href="https://www.instagram.com/subelacriativa/" target="_blank">
+            <a href="https://www.instagram.com/subelacriativa/" target="_blank" class="rodape-link">
                 <img src="logo_sbc.png" alt="Su Bela Criativa">
+                <span class="instagram-texto">📸 Conheça a Su Bela Criativa no Instagram</span>
             </a>
         </div>
     </div>
