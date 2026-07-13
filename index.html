@@ -16,8 +16,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        * {
+        /* Variáveis CSS para fácil manutenção das cores */
+        :root {
+            --cor-principal: #ff5e62;
+            --cor-secundaria: #ff9966;
+            --cor-texto: #4a5568;
+            --cor-titulo: #2c3e50;
+        }
+
+        /* Reset moderno e inteligente */
+        html {
             box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
             margin: 0;
             padding: 0;
         }
@@ -34,6 +46,7 @@
             overflow: hidden;
         }
 
+        /* Uso de Section/Main no lugar de divs genéricas */
         .cartao-surpresa {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(5px);
@@ -48,21 +61,21 @@
 
         .icone-coracao {
             font-size: 3.5rem;
-            color: #ff5e62;
+            color: var(--cor-principal);
             margin-bottom: 15px;
             display: inline-block;
             animation: pulsar 1.5s infinite;
         }
 
         h1 {
-            color: #2c3e50;
+            color: var(--cor-titulo);
             font-size: 2rem;
             margin-bottom: 20px;
             font-weight: 700;
         }
 
         .mensagem {
-            color: #4a5568;
+            color: var(--cor-texto);
             font-size: 1.2rem;
             line-height: 1.6;
             margin-bottom: 20px;
@@ -70,7 +83,7 @@
             background: rgba(249, 251, 252, 0.8);
             padding: 20px;
             border-radius: 16px;
-            border-left: 4px solid #ff5e62;
+            border-left: 4px solid var(--cor-principal);
         }
 
         .desafio-texto {
@@ -81,7 +94,7 @@
         }
 
         .btn-principal {
-            background: linear-gradient(135deg, #ff9966, #ff5e62);
+            background: linear-gradient(135deg, var(--cor-secundaria), var(--cor-principal));
             color: white;
             border: none;
             padding: 16px 32px;
@@ -197,7 +210,8 @@
             object-fit: contain;
         }
 
-        #menu-fim-video {LF
+        /* Correção: Removido o caractere 'LF' que quebrava o CSS */
+        #menu-fim-video {
             position: absolute;
             top: 0;
             left: 0;
@@ -280,7 +294,7 @@
             100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
         }
 
-        .rodape { 
+        footer { 
             margin-top: 25px; 
             display: flex;
             justify-content: center;
@@ -301,7 +315,7 @@
             transform: scale(1.04);
         }
         
-        .rodape img {
+        footer img {
             max-width: 110px;
             height: auto;
             display: block;
@@ -317,7 +331,7 @@
 </head>
 <body>
 
-    <div class="cartao-surpresa" id="tela-inicial">
+    <main class="cartao-surpresa" id="tela-inicial">
         <span class="icone-coracao">❤️</span>
         <h1>Para o Melhor Pai!</h1>
         <div class="mensagem">
@@ -328,32 +342,32 @@
             <span>🎮</span> CLIQUE AQUI
         </button>
         
-        <div class="rodape">
+        <footer>
             <a href="https://www.instagram.com/subelacriativa/" target="_blank" class="rodape-link">
-                <img src="logo_sbc.png" alt="Su Bela Criativa">
+                <img src="logo_sbc.png" alt="Su Bela Criativa" loading="lazy">
                 <span class="instagram-texto">📸 Conheça a Su Bela Criativa no Instagram</span>
             </a>
-        </div>
-    </div>
+        </footer>
+    </main>
 
-    <div id="tela-jogo">
+    <section id="tela-jogo" class="cartao-surpresa">
         <h1>Jogo do Clique Certo! 🧠</h1>
         <p id="instrucoes-jogo">Preste atenção na sequência...</p>
         
         <div class="painel-genius">
-            <button class="botao-cor verde" id="btn-0"></button>
-            <button class="botao-cor vermelho" id="btn-1"></button>
-            <button class="botao-cor azul" id="btn-2"></button>
-            <button class="botao-cor amarelo" id="btn-3"></button>
+            <button class="botao-cor verde" id="btn-0" aria-label="Botão Verde"></button>
+            <button class="botao-cor vermelho" id="btn-1" aria-label="Botão Vermelho"></button>
+            <button class="botao-cor azul" id="btn-2" aria-label="Botão Azul"></button>
+            <button class="botao-cor amarelo" id="btn-3" aria-label="Botão Amarelo"></button>
         </div>
         
-        <div class="rodape">
+        <footer>
             <a href="https://www.instagram.com/subelacriativa/" target="_blank" class="rodape-link">
-                <img src="logo_sbc.png" alt="Su Bela Criativa">
+                <img src="logo_sbc.png" alt="Su Bela Criativa" loading="lazy">
                 <span class="instagram-texto">📸 Conheça a Su Bela Criativa no Instagram</span>
             </a>
-        </div>
-    </div>
+        </footer>
+    </section>
 
     <div id="efeito-fogos">
         <div style="text-align: center;">
@@ -372,7 +386,7 @@
         </div>
     </div>
 
-    <div id="tela-final">
+    <section id="tela-final" class="cartao-surpresa">
         <span class="emoji-presente">🎁</span>
         <h1>Gostou da Surpresa?</h1>
         <p>Guarde essa recordação ou envie direto para quem você ama!</p>
@@ -391,13 +405,13 @@
             </button>
         </div>
         
-        <div class="rodape">
+        <footer>
             <a href="https://www.instagram.com/subelacriativa/" target="_blank" class="rodape-link">
-                <img src="logo_sbc.png" alt="Su Bela Criativa">
+                <img src="logo_sbc.png" alt="Su Bela Criativa" loading="lazy">
                 <span class="instagram-texto">📸 Conheça a Su Bela Criativa no Instagram</span>
             </a>
-        </div>
-    </div>
+        </footer>
+    </section>
 
     <script>
         // Seleção de elementos das telas
@@ -477,7 +491,6 @@
             }
         }
 
-        // Inicialização segura dos cliques do jogo
         function inicializarBotoesJogo() {
             for (let id = 0; id < 4; id++) {
                 const btn = document.getElementById(`btn-${id}`);
@@ -487,7 +500,6 @@
             }
         }
 
-        // Efeito de sucesso e transição para o vídeo
         function acionarSucesso() {
             if (navigator.vibrate) {
                 navigator.vibrate([200, 100, 200, 100, 300]);
@@ -521,17 +533,21 @@
                 fogo.style.left = '50%';
                 fogo.style.top = '50%';
                 
+                // Variáveis transformadas em constantes (Performance)
                 const angulo = Math.random() * Math.PI * 2;
                 const distancia = 70 + Math.random() * 140;
                 
                 fogo.style.setProperty('--x', `${Math.cos(angulo) * distancia}px`);
                 fogo.style.setProperty('--y', `${Math.sin(angulo) * distancia}px`);
                 
+                // Otimização de Memória: Remove a div da árvore DOM assim que a animação acaba
+                fogo.addEventListener('animationend', () => fogo.remove());
+                
                 container.appendChild(fogo);
             }
         }
 
-        // Ouvintes de Eventos Principais (Fluxo de Telas)
+        // Fluxo de Telas
         if (btnIrJogo) {
             btnIrJogo.addEventListener('click', function() {
                 telaInicial.style.display = 'none';
@@ -570,7 +586,6 @@
             });
         }
 
-        // Executa a carga dos botões de cor assim que a página estiver pronta
         document.addEventListener('DOMContentLoaded', inicializarBotoesJogo);
     </script>
 </body>
