@@ -34,7 +34,9 @@
             overflow: hidden;
         }
 
+        /* CARD PRINCIPAL COM IMAGEM DE FUNDO INTERNA COM TRANSPARÊNCIA DE 50% */
         .cartao-surpresa {
+            position: relative; /* Necessário para posicionar o fundo interno */
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(5px);
             border-radius: 24px;
@@ -44,6 +46,27 @@
             max-width: 450px;
             text-align: center;
             animation: surgir 0.8s ease-out;
+            overflow: hidden; /* Garante que o fundo não saia das bordas arredondadas */
+        }
+
+        /* Pseudo-elemento que adiciona a imagem com 50% de opacidade atrás do texto */
+        .cartao-surpresa::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('IMG-20260712-WA0050.jpg') no-repeat center center;
+            background-size: cover;
+            opacity: 0.5; /* 50% de transparência */
+            z-index: 1; /* Fica abaixo do texto */
+        }
+
+        /* Garante que todo o conteúdo do card fique por cima da imagem interna */
+        .cartao-surpresa > * {
+            position: relative;
+            z-index: 2;
         }
 
         .icone-coracao {
@@ -67,7 +90,7 @@
             line-height: 1.6;
             margin-bottom: 20px;
             font-style: italic;
-            background: rgba(249, 251, 252, 0.8);
+            background: rgba(249, 251, 252, 0.85); /* Um pouco mais opaco para contraste */
             padding: 20px;
             border-radius: 16px;
             border-left: 4px solid #ff5e62;
@@ -101,6 +124,7 @@
 
         .btn-principal:active { transform: scale(0.98); }
 
+        /* TELA DO JOGO */
         #tela-jogo {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(5px);
@@ -139,9 +163,7 @@
             opacity: 0.6;
         }
 
-        .botao-cor:active {
-            transform: scale(0.95);
-        }
+        .botao-cor:active { transform: scale(0.95); }
 
         .verde { background-color: #22c55e; border-bottom: 6px solid #15803d; }
         .vermelho { background-color: #ef4444; border-bottom: 6px solid #b91c1c; }
@@ -213,10 +235,7 @@
             z-index: 10000;
         }
 
-        #menu-fim-video h2 {
-            color: white;
-            margin-bottom: 10px;
-        }
+        #menu-fim-video h2 { color: white; margin-bottom: 10px; }
 
         #tela-final {
             background: rgba(255, 255, 255, 0.95);
@@ -297,9 +316,7 @@
             transition: transform 0.2s ease;
         }
 
-        .rodape-link:hover {
-            transform: scale(1.04);
-        }
+        .rodape-link:hover { transform: scale(1.04); }
         
         .rodape img {
             max-width: 110px;
@@ -400,7 +417,6 @@
     </div>
 
     <script>
-        // Seleção de elementos das telas
         const telaInicial = document.getElementById('tela-inicial');
         const telaJogo = document.getElementById('tela-jogo');
         const efeitoFogos = document.getElementById('efeito-fogos');
@@ -410,13 +426,11 @@
         const textoInstrucoes = document.getElementById('instrucoes-jogo');
         const video = document.getElementById('video-principal');
         
-        // Seleção de botões de controle
         const btnIrJogo = document.getElementById('btn-ir-jogo');
         const btnRepetir = document.getElementById('btn-repetir');
         const btnVoltar = document.getElementById('btn-voltar');
         const btnRecomecarTudo = document.getElementById('btn-recomecar-tudo');
 
-        // Lógica do Jogo Genius
         const sequenciaJogo = [0, 2, 1]; 
         let passosUsuario = [];
         let podeClicar = false;
@@ -477,7 +491,6 @@
             }
         }
 
-        // Inicialização segura dos cliques do jogo
         function inicializarBotoesJogo() {
             for (let id = 0; id < 4; id++) {
                 const btn = document.getElementById(`btn-${id}`);
@@ -487,7 +500,6 @@
             }
         }
 
-        // Efeito de sucesso e transição para o vídeo
         function acionarSucesso() {
             if (navigator.vibrate) {
                 navigator.vibrate([200, 100, 200, 100, 300]);
@@ -501,7 +513,7 @@
                 setTimeout(() => {
                     efeitoFogos.style.display = 'none';
                     containerPlayer.style.display = 'flex';
-                    video.play().catch(err => console.log("Aviso de auto-play bloqueado ajustado automaticamente.", err));
+                    video.play().catch(err => console.log("Aviso de auto-play bloqueado.", err));
                 }, 3200);
             }, 600);
         }
@@ -531,7 +543,6 @@
             }
         }
 
-        // Ouvintes de Eventos Principais (Fluxo de Telas)
         if (btnIrJogo) {
             btnIrJogo.addEventListener('click', function() {
                 telaInicial.style.display = 'none';
@@ -570,7 +581,6 @@
             });
         }
 
-        // Executa a carga dos botões de cor assim que a página estiver pronta
         document.addEventListener('DOMContentLoaded', inicializarBotoesJogo);
     </script>
 </body>
